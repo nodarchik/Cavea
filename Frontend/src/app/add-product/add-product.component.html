@@ -1,0 +1,63 @@
+<div class="container mt-5">
+    <h1>Add Product</h1>
+    <form (ngSubmit)="addProduct()" #productForm="ngForm">
+      <div class="mb-3">
+        <label for="location" class="form-label">Location</label>
+        <select
+          class="form-control"
+          id="location"
+          [(ngModel)]="newProduct.location"
+          name="location"
+          required
+        >
+          <option>Main Office</option>
+          <option>Cavea Gallerea</option>
+          <option>Cavea Tbilisi Mall</option>
+          <option>Cavea East Point</option>
+          <option>Cavea City Mall</option>
+        </select>
+        <div
+          *ngIf="productForm.submitted && productForm.controls.location.errors?['required']"
+          class="text-danger"
+        >
+          Location is required.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          [(ngModel)]="newProduct.name"
+          name="name"
+          required
+        />
+        <div
+          *ngIf="productForm.submitted && productForm.controls.name.errors?['required']"
+          class="text-danger"
+        >
+          Name is required.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="price" class="form-label">Price</label>
+        <input
+          type="number"
+          class="form-control"
+          id="price"
+          [(ngModel)]="newProduct.price"
+          name="price"
+          required
+        />
+        <div
+          *ngIf="productForm.submitted && productForm.controls.price.errors?['required']"
+          class="text-danger"
+        >
+          Price is required.
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Add</button>
+    </form>
+  </div>
+  
