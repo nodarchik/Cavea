@@ -1,27 +1,29 @@
 <div class="container mt-4">
-  <button [routerLink]="['/add-product']" class="btn btn-primary mb-3">
-    Add Product
-  </button>
-  
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Product Name</th>
-          <th>Product Location</th>
-          <th>Product Price (in Lari)</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let product of products">
-          <td>{{ product.name }}</td>
-          <td>{{ product.location }}</td>
-          <td>{{ product.price }}</td>
-          <td>
-            <button class="btn btn-danger" (click)="deleteProduct(product.id)">Delete</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  
+  <a routerLink="/add-product" class="btn btn-primary mb-3"> Add Product </a>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Product Name</th>
+        <th>Product Location</th>
+        <th>Product Price (in Lari)</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products">
+        <td>{{ product.name }}</td>
+        <td>{{ product.location }}</td>
+        <td>{{ product.price }}</td>
+        <td>
+          <button
+            class="btn btn-danger"
+            (click)="product.id !== undefined && deleteProduct(product.id)"
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

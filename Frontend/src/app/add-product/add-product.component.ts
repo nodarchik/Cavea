@@ -1,26 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../product.service';
-import { Router } from '@angular/router';
+import { Product } from '../models/products';
 
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
   styleUrls: ['./add-product.component.css'],
 })
-export class AddProductComponent {
-  newProduct = {
-    location: '',
+export class AddProductComponent implements OnInit {
+  newProduct: Product = {
+    id: 0,
     name: '',
+    location: '',
     price: 0,
   };
+  productForm: any;
 
-  constructor(private productService: ProductService, private router: Router) {}
+  constructor(private productService: ProductService) {}
 
-  addProduct(): void {
-    if (this.newProduct.location && this.newProduct.name && this.newProduct.price) {
-      this.productService.addProduct(this.newProduct).subscribe(() => {
-        this.router.navigate(['/']);
-      });
-    }
+  ngOnInit(): void {}
+
+  onSubmit(): void {
+    this.productService.addProduct(this.newProduct).subscribe((product) => {
+      this.newProduct = {
+        id: product.id,
+        name: '',
+        location: '',
+        price: 0,
+      };
+    });
   }
 }

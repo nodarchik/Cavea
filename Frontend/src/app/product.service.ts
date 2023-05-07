@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Product } from './models/products';
@@ -7,8 +7,7 @@ import { Product } from './models/products';
   providedIn: 'root',
 })
 export class ProductService {
-  private apiUrl = 'http://localhost:3000';
-
+  private apiUrl = 'http://localhost:3001';
   constructor(private http: HttpClient) {}
 
   getProducts(): Observable<Product[]> {
@@ -16,10 +15,12 @@ export class ProductService {
   }
 
   addProduct(product: Product): Observable<Product> {
-    return this.http.post<Product>(`${this.apiUrl}/products`, product);
+    return this.http.post<Product>(`${this.apiUrl}/products`, product, {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    });
   }
 
-  deleteProduct(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/products/${id}`);
+  deleteProduct(id: number): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}/products/${id}`);
   }
 }
