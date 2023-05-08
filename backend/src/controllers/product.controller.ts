@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { Product } from "../models/product";
+import { Op } from "sequelize";
 
 export const addProduct = async (req: Request, res: Response) => {
   try {
@@ -16,9 +17,15 @@ export const listProducts = async (
 ): Promise<void> => {
   const offset = parseInt(req.query.offset as string) || 0;
   const limit = parseInt(req.query.limit as string) || 20;
+  const location = req.query.location as string | undefined;
+
+  const queryOptions: any = { limit, offset };
+  if (location) {
+    queryOptions.where = { location };
+  }
 
   try {
-    const products = await Product.findAndCountAll({ limit, offset });
+    const products = await Product.findAndCountAll(queryOptions);
     res
       .status(200)
       .json({ products: products.rows, totalCount: products.count });

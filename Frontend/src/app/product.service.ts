@@ -11,11 +11,14 @@ export class ProductService {
 
   constructor(private http: HttpClient) {}
 
-  getProducts(page: number, pageSize: number = 20): Observable<any> {
+  getProducts(page: number, pageSize: number = 20, location?: string | null): Observable<any> {
     const offset = (page - 1) * pageSize;
-    return this.http.get<any>(`${this.apiUrl}/products?limit=${pageSize}&offset=${offset}`);
+    let url = `${this.apiUrl}/products?limit=${pageSize}&offset=${offset}`;
+    if (location) {
+      url += `&location=${location}`;
+    }
+    return this.http.get<any>(url);
   }
-  
 
   addProduct(product: Product): Observable<Product> {
     return this.http.post<Product>(`${this.apiUrl}/products`, product, {

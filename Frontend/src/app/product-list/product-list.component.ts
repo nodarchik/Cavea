@@ -11,6 +11,8 @@ export class ProductListComponent implements OnInit {
   products: Product[] = [];
   currentPage: number = 1;
   pageSize: number = 20;
+  locations: Set<string> = new Set();
+  selectedLocation: string | null = null;
 
   constructor(private productService: ProductService) {}
 
@@ -20,10 +22,13 @@ export class ProductListComponent implements OnInit {
 
   totalPages: number = 1;
 
-  fetchProducts(): void {
-    this.productService.getProducts(this.currentPage, this.pageSize).subscribe((response: any) => {
+  fetchProducts(location?: string | null): void {
+    this.productService.getProducts(this.currentPage, this.pageSize, location).subscribe((response: any) => {
       this.products = response.products;
       this.totalPages = Math.ceil(response.totalCount / this.pageSize);
+      response.products.forEach((product: Product) => {
+        this.locations.add(product.location);
+      });
     });
   }
 
