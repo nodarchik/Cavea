@@ -1,20 +1,16 @@
-import { Model, DataTypes } from 'sequelize';
-import sequelize from '../database/database';
+import { Sequelize, DataTypes, Model } from 'sequelize';
 
-export class Product extends Model {
-  public id!: number;
-  public name!: string;
-  public location!: string;
-  public price!: number;
+const sequelize = new Sequelize('cavea', 'admin', 'admin', {
+  host: 'localhost',
+  dialect: 'postgres',
+});
 
-  public readonly createdAt!: Date;
-  public readonly updatedAt!: Date;
-}
+class Product extends Model {}
 
 Product.init(
   {
     id: {
-      type: DataTypes.INTEGER.UNSIGNED,
+      type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
     },
@@ -32,7 +28,10 @@ Product.init(
     },
   },
   {
-    tableName: 'products',
     sequelize,
+    modelName: 'Product',
+    timestamps: true,
   }
 );
+
+export { Product };

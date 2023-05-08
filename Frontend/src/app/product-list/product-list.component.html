@@ -6,7 +6,7 @@
       <tr>
         <th>Product Name</th>
         <th>Product Location</th>
-        <th>Product Price (in Lari)</th>
+        <th>Product Price (Gel)</th>
         <th>Action</th>
       </tr>
     </thead>
@@ -26,4 +26,9 @@
       </tr>
     </tbody>
   </table>
+  <app-pagination
+    [currentPage]="currentPage"
+    [totalPages]="totalPages"
+    (pageChanged)="onPageChange($event)"
+  ></app-pagination>
 </div>

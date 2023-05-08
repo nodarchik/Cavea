@@ -10,14 +10,23 @@ export const addProduct = async (req: Request, res: Response) => {
   }
 };
 
-export const listProducts = async (_req: Request, res: Response) => {
+export const listProducts = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  const offset = parseInt(req.query.offset as string) || 0;
+  const limit = parseInt(req.query.limit as string) || 20;
+
   try {
-    const products = await Product.findAll();
-    res.json(products);
+    const products = await Product.findAndCountAll({ limit, offset });
+    res
+      .status(200)
+      .json({ products: products.rows, totalCount: products.count });
   } catch (error) {
-    res.status(400).json({ message: "Error listing products", error });
+    res.status(500).json({ message: "Error fetching products", error });
   }
 };
+
 
 export const deleteProduct = async (req: Request, res: Response) => {
   try {

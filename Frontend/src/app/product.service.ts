@@ -8,11 +8,14 @@ import { Product } from './models/products';
 })
 export class ProductService {
   private apiUrl = 'http://localhost:3001';
+
   constructor(private http: HttpClient) {}
 
-  getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(`${this.apiUrl}/products`);
+  getProducts(page: number, pageSize: number = 20): Observable<any> {
+    const offset = (page - 1) * pageSize;
+    return this.http.get<any>(`${this.apiUrl}/products?limit=${pageSize}&offset=${offset}`);
   }
+  
 
   addProduct(product: Product): Observable<Product> {
     return this.http.post<Product>(`${this.apiUrl}/products`, product, {
