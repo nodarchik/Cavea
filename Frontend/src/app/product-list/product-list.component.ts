@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../product.service';
 import { Product } from '../models/products';
 
@@ -12,7 +12,7 @@ export class ProductListComponent implements OnInit {
   currentPage: number = 1;
   pageSize: number = 20;
 
-  constructor(private productService: ProductService, private cdr: ChangeDetectorRef) {}
+  constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
     this.fetchProducts();
@@ -21,11 +21,9 @@ export class ProductListComponent implements OnInit {
   totalPages: number = 1;
 
   fetchProducts(): void {
-    console.log('Fetching products for page', this.currentPage);
     this.productService.getProducts(this.currentPage, this.pageSize).subscribe((response: any) => {
       this.products = response.products;
       this.totalPages = Math.ceil(response.totalCount / this.pageSize);
-      this.cdr.detectChanges(); // Add this line to manually trigger change detection
     });
   }
 
@@ -36,7 +34,6 @@ export class ProductListComponent implements OnInit {
   }
 
   onPageChange(newPage: number): void {
-    console.log('Changing page to', newPage); // Add this line
     this.currentPage = newPage;
     this.fetchProducts();
   }

@@ -13,7 +13,7 @@ export class AddProductComponent implements OnInit {
   newProduct: Omit<Product, 'id'> = {
     name: '',
     location: '',
-    price: NaN,
+    price: null,
   };
 
   constructor(private productService: ProductService, private router: Router) {}

@@ -15,13 +15,11 @@ export class PaginationComponent {
   }
 
   goToPage(page: number): void {
-    console.log('PaginationComponent: Going to page', page);
     this.currentPage = page;
     this.pageChanged.emit(this.currentPage);
   }
 
   previousPage(): void {
-    console.log('Going to previous page');
     if (this.currentPage > 1) {
       this.currentPage--;
       this.pageChanged.emit(this.currentPage);
@@ -29,7 +27,6 @@ export class PaginationComponent {
   }
   
   nextPage(): void {
-    console.log('Going to next page');
     if (this.currentPage < this.totalPages) {
       this.currentPage++;
       this.pageChanged.emit(this.currentPage);
