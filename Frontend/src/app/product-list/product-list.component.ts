@@ -12,7 +12,7 @@ export class ProductListComponent implements OnInit {
   currentPage: number = 1;
   pageSize: number = 20;
   locations: Set<string> = new Set();
-  selectedLocation: string | null = null;
+  selectedLocation: string = '';
 
   constructor(private productService: ProductService) {}
 

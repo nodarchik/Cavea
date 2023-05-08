@@ -1,8 +1,8 @@
 <div class="container mt-5">
-  <h1>Add Product</h1>
+  <h1>ნივთის დამატება</h1>
   <form (ngSubmit)="onSubmit(productForm)" #productForm="ngForm">
     <div class="mb-3">
-      <label for="location" class="form-label">Location</label>
+      <label for="location" class="form-label">ადგილმდებარეობა</label>
       <select
         class="form-control"
         id="location"
@@ -10,21 +10,21 @@
         name="location"
         required
       >
-        <option>Main Office</option>
-        <option>Cavea Gallerea</option>
-        <option>Cavea Tbilisi Mall</option>
-        <option>Cavea East Point</option>
-        <option>Cavea City Mall</option>
+        <option>მთავარი ოფისი</option>
+        <option>კავეა გალერია</option>
+        <option>კავეა თბილისი მოლი</option>
+        <option>კავეა ისთ ფოინთი</option>
+        <option>კავეა სითი მოლი</option>
       </select>
       <div
         *ngIf="productForm.submitted && productForm.controls['location'].errors?.['required']"
         class="text-danger"
       >
-        Location is required.
+        გთხოვთ მიუთითოთ ადგილმდებარეობა
       </div>
     </div>
     <div class="mb-3">
-      <label for="name" class="form-label">Name</label>
+      <label for="name" class="form-label">სახელი</label>
       <input
         type="text"
         class="form-control"
@@ -37,11 +37,11 @@
         *ngIf="productForm.submitted && productForm.controls['name'].errors?.['required']"
         class="text-danger"
       >
-        Name is required.
+        გთხოვთ მიუთითოთ სახელი
       </div>
     </div>
     <div class="mb-3">
-      <label for="price" class="form-label">Price</label>
+      <label for="price" class="form-label">ფასი</label>
       <input
         type="number"
         class="form-control"
@@ -54,9 +54,9 @@
         *ngIf="productForm.submitted && productForm.controls['price'].errors?.['required']"
         class="text-danger"
       >
-        Price is required.
+        გთხოვთ მიუთითოთ ფასი
       </div>
     </div>
-    <button type="submit" class="btn btn-primary">Add</button>
+    <button type="submit" class="btn btn-primary">დამატება</button>
   </form>
 </div>
