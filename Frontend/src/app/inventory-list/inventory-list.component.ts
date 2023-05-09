@@ -15,7 +15,8 @@ export class InventoryListComponent implements OnInit {
   selectedLocation: string = '';
   sortBy: string = '';
   sortOrder: 'ASC' | 'DESC' = 'ASC';
-  
+  totalCount: number = 0;
+
   constructor(private inventoryService: InventoryService) {}
 
   ngOnInit(): void {
@@ -29,6 +30,7 @@ export class InventoryListComponent implements OnInit {
       .getInventories(this.currentPage, this.pageSize, location, sortBy)
       .subscribe((response: any) => {
         this.inventories = response.inventories;
+        this.totalCount = response.totalCount; 
         this.totalPages = Math.ceil(response.totalCount / this.pageSize);
         response.inventories.forEach((inventory: Inventory) => {
           this.locations.add(inventory.location);

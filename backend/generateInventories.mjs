@@ -64,7 +64,6 @@ function generateInventories(n) {
 const inventories = generateInventories(300000);
 fs.writeFileSync("testInventories.json", JSON.stringify(inventories, null, 2));
 
-// Insert the generated inventories into the database
 insertInventoriesToDatabase(inventories);
 
 console.log("Test inventories generated successfully!");

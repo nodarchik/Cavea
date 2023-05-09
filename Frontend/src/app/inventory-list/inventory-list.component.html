@@ -38,7 +38,9 @@
         <td>
           <button
             class="btn btn-danger"
-            (click)="inventory.id !== undefined && deleteInventory(inventory.id)"
+            (click)="
+              inventory.id !== undefined && deleteInventory(inventory.id)
+            "
           >
             წაშლა
           </button>
@@ -46,9 +48,13 @@
       </tr>
     </tbody>
   </table>
-  <app-pagination
-    [currentPage]="currentPage"
-    [totalPages]="totalPages"
-    (pageChanged)="onPageChange($event)"
-  ></app-pagination>
+  <div class="d-flex align-items-center justify-content-between">
+    <app-pagination
+      [currentPage]="currentPage"
+      [totalPages]="totalPages"
+      [maxVisiblePages]="20"
+      (pageChanged)="onPageChange($event)"
+    ></app-pagination>
+    <div  class="font-weight-bold pb-3">ნივთების ჯამური ოდენობა  {{ totalCount }}</div>
+  </div>
 </div>
