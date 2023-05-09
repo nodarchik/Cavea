@@ -1,6 +1,8 @@
 <div class="container mt-4">
   <div class="d-flex gap-5">
-    <a routerLink="/add-product" class="btn btn-primary mb-3">ნივთის დამატება</a>
+    <a routerLink="/add-product" class="btn btn-primary mb-3"
+      >ნივთის დამატება</a
+    >
     <select
       [(ngModel)]="selectedLocation"
       (change)="fetchProducts(selectedLocation)"
@@ -10,6 +12,13 @@
       <option *ngFor="let location of locations" [value]="location">
         {{ location }}
       </option>
+    </select>
+    <select
+      (change)="onSortChange($event.target)"
+      class="form-select mb-3 w-25"
+    >
+      <option value="name">სახელით განლაგება</option>
+      <option value="price">ფასით განლაგება</option>
     </select>
   </div>
   <table class="table table-striped">

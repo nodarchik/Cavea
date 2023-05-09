@@ -11,12 +11,22 @@ export class ProductService {
 
   constructor(private http: HttpClient) {}
 
-  getProducts(page: number, pageSize: number = 20, location?: string | null): Observable<any> {
+  getProducts(
+    page: number,
+    pageSize: number = 20,
+    location?: string | null,
+    sortBy?: string,
+    
+  ): Observable<any> {
     const offset = (page - 1) * pageSize;
     let url = `${this.apiUrl}/products?limit=${pageSize}&offset=${offset}`;
     if (location) {
       url += `&location=${location}`;
     }
+    if (sortBy) {
+      url += `&sortBy=${sortBy}`;
+    }
+
     return this.http.get<any>(url);
   }
 

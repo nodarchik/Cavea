@@ -18,12 +18,17 @@ export const listProducts = async (
   const offset = parseInt(req.query.offset as string) || 0;
   const limit = parseInt(req.query.limit as string) || 20;
   const location = req.query.location as string | undefined;
+  const sortBy = req.query.sortBy as string | undefined;
 
   const queryOptions: any = { limit, offset };
   if (location) {
     queryOptions.where = { location };
   }
 
+  if (sortBy) {
+    queryOptions.order = [[sortBy, 'ASC']];
+  }
+  
   try {
     const products = await Product.findAndCountAll(queryOptions);
     res
@@ -33,7 +38,6 @@ export const listProducts = async (
     res.status(500).json({ message: "Error fetching products", error });
   }
 };
-
 
 export const deleteProduct = async (req: Request, res: Response) => {
   try {
