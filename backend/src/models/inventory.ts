@@ -5,9 +5,9 @@ const sequelize = new Sequelize('cavea', 'admin', 'admin', {
   dialect: 'postgres',
 });
 
-class Product extends Model {}
+class Inventory extends Model {}
 
-Product.init(
+Inventory.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -29,9 +29,9 @@ Product.init(
   },
   {
     sequelize,
-    modelName: 'Product',
+    modelName: 'Inventory',
     timestamps: true,
   }
 );
 
-export { Product };
+export { Inventory };
