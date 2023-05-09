@@ -1,12 +1,12 @@
 <div class="container mt-5">
   <h1>ნივთის დამატება</h1>
-  <form (ngSubmit)="onSubmit(productForm)" #productForm="ngForm">
+  <form (ngSubmit)="onSubmit(inventoryForm)" #inventoryForm="ngForm">
     <div class="mb-3">
       <label for="location" class="form-label">ადგილმდებარეობა</label>
       <select
         class="form-control"
         id="location"
-        [(ngModel)]="newProduct.location"
+        [(ngModel)]="newInventory.location"
         name="location"
         required
       >
@@ -17,7 +17,7 @@
         <option>კავეა სითი მოლი</option>
       </select>
       <div
-        *ngIf="productForm.submitted && productForm.controls['location'].errors?.['required']"
+        *ngIf="inventoryForm.submitted && inventoryForm.controls['location'].errors?.['required']"
         class="text-danger"
       >
         გთხოვთ მიუთითოთ ადგილმდებარეობა
@@ -29,12 +29,12 @@
         type="text"
         class="form-control"
         id="name"
-        [(ngModel)]="newProduct.name"
+        [(ngModel)]="newInventory.name"
         name="name"
         required
       />
       <div
-        *ngIf="productForm.submitted && productForm.controls['name'].errors?.['required']"
+        *ngIf="inventoryForm.submitted && inventoryForm.controls['name'].errors?.['required']"
         class="text-danger"
       >
         გთხოვთ მიუთითოთ სახელი
@@ -46,12 +46,12 @@
         type="number"
         class="form-control"
         id="price"
-        [(ngModel)]="newProduct.price"
+        [(ngModel)]="newInventory.price"
         name="price"
         required
       />
       <div
-        *ngIf="productForm.submitted && productForm.controls['price'].errors?.['required']"
+        *ngIf="inventoryForm.submitted && inventoryForm.controls['price'].errors?.['required']"
         class="text-danger"
       >
         გთხოვთ მიუთითოთ ფასი

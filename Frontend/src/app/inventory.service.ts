@@ -1,25 +1,24 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Product } from './models/products';
+import { Inventory } from './models/inventory';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ProductService {
+export class InventoryService { 
   private apiUrl = 'http://localhost:3001';
 
   constructor(private http: HttpClient) {}
 
-  getProducts(
+  getInventories( 
     page: number,
     pageSize: number = 20,
     location?: string | null,
     sortBy?: string,
-    
   ): Observable<any> {
     const offset = (page - 1) * pageSize;
-    let url = `${this.apiUrl}/products?limit=${pageSize}&offset=${offset}`;
+    let url = `${this.apiUrl}/inventories?limit=${pageSize}&offset=${offset}`;
     if (location) {
       url += `&location=${location}`;
     }
@@ -30,13 +29,13 @@ export class ProductService {
     return this.http.get<any>(url);
   }
 
-  addProduct(product: Product): Observable<Product> {
-    return this.http.post<Product>(`${this.apiUrl}/products`, product, {
+  addInventory(inventory: Inventory): Observable<Inventory> { 
+    return this.http.post<Inventory>(`${this.apiUrl}/inventories`, inventory, { 
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
     });
   }
 
-  deleteProduct(id: number): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}/products/${id}`);
+  deleteInventory(id: number): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}/inventories/${id}`); 
   }
 }

@@ -1,11 +1,11 @@
 <div class="container mt-4">
   <div class="d-flex gap-5">
-    <a routerLink="/add-product" class="btn btn-primary mb-3"
+    <a routerLink="/add-inventory" class="btn btn-primary mb-3"
       >ნივთის დამატება</a
     >
     <select
       [(ngModel)]="selectedLocation"
-      (change)="fetchProducts(selectedLocation)"
+      (change)="fetchInventories(selectedLocation)"
       class="form-select mb-3 w-25"
     >
       <option value="">ყველა ადგილმდებარეობა</option>
@@ -31,14 +31,14 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let product of products">
-        <td>{{ product.name }}</td>
-        <td>{{ product.location }}</td>
-        <td>{{ product.price }}</td>
+      <tr *ngFor="let inventory of inventories">
+        <td>{{ inventory.name }}</td>
+        <td>{{ inventory.location }}</td>
+        <td>{{ inventory.price }}</td>
         <td>
           <button
             class="btn btn-danger"
-            (click)="product.id !== undefined && deleteProduct(product.id)"
+            (click)="inventory.id !== undefined && deleteInventory(inventory.id)"
           >
             წალა
           </button>
