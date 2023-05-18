@@ -10,6 +10,7 @@ const sequelize = new Sequelize(config.database, config.username, config.passwor
   logging: false,
 });
 
+// Test database connection
 sequelize
   .authenticate()
   .then(() => {

@@ -1,5 +1,6 @@
 import { QueryInterface, DataTypes } from "sequelize";
 
+// Create the table Inventories
 module.exports = {
   up: async (queryInterface: QueryInterface) => {
     await queryInterface.createTable("Inventories", {

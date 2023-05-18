@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { Inventory } from "../models/inventory"; 
 
+// Add product to inventory
 export const addInventory = async (req: Request, res: Response) => {
   try {
     const inventory = await Inventory.create(req.body);
@@ -10,6 +11,7 @@ export const addInventory = async (req: Request, res: Response) => {
   }
 };
 
+// List inventory items with pagination, location filter, and sorting
 export const listInventories = async (
   req: Request,
   res: Response
@@ -37,7 +39,7 @@ export const listInventories = async (
     res.status(500).json({ message: "Error fetching inventories", error });
   }
 };
-
+// Delete item from inventory
 export const deleteInventory = async (req: Request, res: Response) => {
   try {
     const inventoryId = parseInt(req.params.id, 10);

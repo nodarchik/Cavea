@@ -1,6 +1,7 @@
 import pkg from 'pg';
 const { Pool } = pkg;
 
+// Function to delete all inventories from the database
 async function deleteAllInventories() {
   const pool = new Pool({
     host: 'localhost',
@@ -20,5 +21,5 @@ async function deleteAllInventories() {
     await pool.end();
   }
 }
-
+// Call the deleteAllInventories function to initiate the deletion process
 deleteAllInventories();

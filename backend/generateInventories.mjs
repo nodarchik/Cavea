@@ -1,8 +1,10 @@
+// Import required modules and packages
 import fs from "fs";
 import pkg from "pg";
 const { Pool } = pkg;
 import { faker } from "@faker-js/faker";
 
+// Function to insert inventories into the database using the pg package and the Pool class
 async function insertInventoriesToDatabase(inventories) {
   const pool = new Pool({
     host: "localhost",
@@ -11,7 +13,7 @@ async function insertInventoriesToDatabase(inventories) {
     database: "cavea",
     port: 5432,
   });
-
+// SQL query to insert an inventory
   const insertInventoryQuery =
   'INSERT INTO "Inventories" ("name", "location", "price", "createdAt", "updatedAt") VALUES ($1, $2, $3, $4, $5)';
 
@@ -30,7 +32,7 @@ async function insertInventoriesToDatabase(inventories) {
     await pool.end();
   }
 }
-
+// Function to create a single inventory using the faker package
 function createInventory(location) {
   const now = new Date();
   return {
@@ -42,7 +44,7 @@ function createInventory(location) {
     updatedAt: now,
   };
 }
-
+// Function to generate multiple inventories using the createInventory function
 function generateInventories(n) {
   const inventories = [];
   const locations = [
@@ -60,10 +62,11 @@ function generateInventories(n) {
   }
   return inventories;
 }
-
+// Generate inventories and write them to a JSON file
 const inventories = generateInventories(300000);
 fs.writeFileSync("testInventories.json", JSON.stringify(inventories, null, 2));
 
+// Insert inventories into the database
 insertInventoriesToDatabase(inventories);
 
 console.log("Test inventories generated successfully!");

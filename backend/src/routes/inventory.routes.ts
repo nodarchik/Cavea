@@ -7,8 +7,11 @@ import {
 
 const router = Router();
 
+// Route for adding an inventory item
 router.post("/", addInventory);
+// Route for listing all inventories
 router.get("/", listInventories); 
+// Route for deleting an inventory item by ID
 router.delete("/:id", deleteInventory); 
 
 export default router;
